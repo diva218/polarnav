@@ -53,11 +53,8 @@ export function useNavigationState() {
         setRiskZones(zoneData);
         setStations(stationData);
 
-        // Default selection: active vessel
-        setSelectedObject({
-          type: 'vessel',
-          data: vesselData
-        });
+        // Default selection: none (panel only opens on user selection)
+        setSelectedObject(null);
       } catch (err) {
         console.error('Error loading PolarNav data:', err);
       } finally {
@@ -121,9 +118,17 @@ export function useNavigationState() {
     }
   }, [vessel, selectVessel]);
 
+  const zoomTo = useCallback((coordinates, zoom = 7) => {
+    if (coordinates && coordinates.length === 2) {
+      setMapCenter(coordinates);
+      setMapZoom(zoom);
+    }
+  }, []);
+
   const resetAntarcticOverview = useCallback(() => {
-    setMapCenter([-75.0, 45.0]);
-    setMapZoom(3);
+    setMapCenter([-68.2000, 72.0000]);
+    setMapZoom(5);
+    setSelectedObject(null);
   }, []);
 
   return {
@@ -149,6 +154,8 @@ export function useNavigationState() {
     setMapCenter,
     setMapZoom,
     focusVessel,
-    resetAntarcticOverview
+    resetAntarcticOverview,
+    zoomTo
   };
 }
+

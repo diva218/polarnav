@@ -1,0 +1,48 @@
+# ═════════════════════════════════════════════════════════════════════════════
+# POLARNAV ML — Sea-Ice Segmentation Model Configuration (Model 1)
+# ═════════════════════════════════════════════════════════════════════════════
+
+dataset:
+  raw_dir: "ml/datasets/raw"
+  processed_dir: "ml/datasets/processed"
+  train_dir: "ml/datasets/train"
+  val_dir: "ml/datasets/val"
+  test_dir: "ml/datasets/test"
+  split_ratio: [0.70, 0.15, 0.15]
+  supported_extensions: [".tif", ".tiff", ".png", ".jpg", ".jpeg"]
+
+model:
+  name: "U-Net"
+  in_channels: 1          # Sentinel-1 SAR single-band (HH or HV) or 3-band
+  num_classes: 3          # 0: Open Water, 1: Sea Ice, 2: Dense/Compact Ice
+  base_filters: 64
+  bilinear: true
+
+classes:
+  0: "Open Water"
+  1: "Sea Ice"
+  2: "Dense/Compact Ice"
+
+training:
+  epochs: 30
+  batch_size: 8
+  learning_rate: 0.0001
+  weight_decay: 0.01
+  image_size: 512
+  num_workers: 4
+  seed: 42
+  use_amp: true            # Automatic Mixed Precision for CUDA
+  checkpoint_dir: "ml/checkpoints"
+  best_model_name: "best_unet_sea_ice.pth"
+  latest_model_name: "latest_unet_sea_ice.pth"
+
+augmentation:
+  horizontal_flip_prob: 0.5
+  vertical_flip_prob: 0.5
+  random_rotate_prob: 0.5
+  brightness_contrast_prob: 0.3
+
+output:
+  masks_dir: "ml/outputs/masks"
+  predictions_dir: "ml/outputs/predictions"
+  plots_dir: "ml/outputs/plots"

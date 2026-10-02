@@ -14,7 +14,7 @@ import {
   DEMO_ALTERNATIVE_ROUTE as MOCK_ALTERNATIVE_ROUTE,
   DEMO_RISK_ZONES as MOCK_RISK_ZONES
 } from '../data/antarcticDemoData';
-import { ANTARCTIC_STATIONS } from '../data/antarcticStations';
+import { fetchAntarcticStations } from '../data/stations/stationData';
 
 const USE_REMOTE_API = false; // Toggle to true when FastAPI backend is live
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1';
@@ -73,10 +73,10 @@ export const navigationService = {
   },
 
   /**
-   * Fetch Antarctic research stations
+   * Fetch Antarctic research stations & facilities (COMNAP dataset)
    */
   async getAntarcticStations() {
-    return Promise.resolve([...ANTARCTIC_STATIONS]);
+    return await fetchAntarcticStations();
   },
 
   /**

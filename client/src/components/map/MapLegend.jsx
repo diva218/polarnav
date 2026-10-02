@@ -1,50 +1,16 @@
-import React, { useState } from 'react';
-import { Layers, ChevronDown, ChevronUp } from 'lucide-react';
+import React from 'react';
 
 export default function MapLegend() {
-  const [collapsed, setCollapsed] = useState(false);
-
   return (
-    <div className="absolute bottom-4 left-4 z-[1000] bg-[#070d18]/90 backdrop-blur-md border border-slate-800/90 rounded p-2.5 shadow-xl font-mono text-[10px] text-slate-300 max-w-[240px]">
-      <div 
-        onClick={() => setCollapsed(!collapsed)}
-        className="flex items-center justify-between cursor-pointer font-bold text-slate-200 border-b border-slate-800 pb-1 mb-1.5"
-      >
-        <span className="flex items-center gap-1.5 text-cyan-400">
-          <Layers className="w-3 h-3" />
-          MAP SYMBOLOGY
-        </span>
-        {collapsed ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
-      </div>
-
-      {!collapsed && (
-        <div className="space-y-1.5">
-          <div className="flex items-center gap-2">
-            <span className="w-3 h-3 rounded-full bg-cyan-500 border border-white shrink-0"></span>
-            <span>Research Vessel (Active)</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="w-3 h-3 bg-rose-600 rounded-sm border border-rose-300 shrink-0"></span>
-            <span>Iceberg / Calved Mass (Critical)</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="w-3 h-3 bg-amber-500 rounded-sm border border-amber-300 shrink-0"></span>
-            <span>Growler / Bergy Bit Field</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="w-4 h-0.5 bg-cyan-400 border-b border-dashed border-cyan-200 shrink-0"></span>
-            <span className="text-cyan-300 font-semibold">AI Optimal Low-Ice Route</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="w-4 h-0.5 bg-amber-500 border-b border-dashed border-amber-300 shrink-0"></span>
-            <span>Conventional Direct Route</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="w-3 h-2 bg-rose-500/30 border border-rose-500 shrink-0"></span>
-            <span>Heavy Pack Ice Hazard Zone</span>
-          </div>
+    <div className="absolute bottom-4 left-6 z-[1000] bg-[#071018]/80 backdrop-blur-sm border border-white/[0.08] px-3 py-1.5 rounded-sm font-mono text-[10px] text-[#82909B] select-none pointer-events-none">
+      <div className="flex items-center gap-3">
+        <span className="tracking-widest uppercase text-[9px] text-[#F2F4F5] font-medium">SEA ICE</span>
+        <div className="flex items-center gap-1.5">
+          <span className="text-[9px]">0</span>
+          <div className="w-16 h-[3px] rounded-full bg-gradient-to-r from-transparent via-[#38bdf8]/40 to-[#38bdf8]" />
+          <span className="text-[9px]">100%</span>
         </div>
-      )}
+      </div>
     </div>
   );
 }

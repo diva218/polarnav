@@ -1,116 +1,163 @@
 @import "tailwindcss";
 
+/* ════════════════════════════════════════════
+   POLARNAV AI — Design System
+   Dark Antarctic / Scientific / Editorial
+════════════════════════════════════════════ */
+
 @layer base {
   :root {
-    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-    --font-mono: 'JetBrains Mono', monospace;
-    --font-display: 'Chakra Petch', sans-serif;
+    --color-bg:       #050d17;
+    --color-surface:  #0a1825;
+    --color-border:   rgba(255,255,255,0.07);
+    --color-text:     #e8edf2;
+    --color-muted:    #475569;
+    --color-accent:   #38bdf8;
+    --color-accent-dim: #0e7490;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--color-bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Full-viewport map layout */
+  html.map-view,
+  html.map-view body,
+  html.map-view #root {
+    overflow: hidden;
+    height: 100%;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+    overflow-x: hidden;
   }
 }
 
-/* Custom scrollbar for tactical/scientific data feeds */
+/* ────────────────────────────────────
+   Typography Utilities
+──────────────────────────────────── */
+
+/* Headlines — wide, heavy geometric display font */
+.font-display {
+  font-family: 'Syne', 'Sora', 'Space Grotesk', system-ui, sans-serif;
+}
+
+/* Technical labels, data values, timestamps */
+.font-tech {
+  font-family: 'Space Mono', 'JetBrains Mono', monospace;
+}
+
+/* Editorial alias for display */
+.font-editorial {
+  font-family: 'Sora', 'Space Grotesk', system-ui, sans-serif;
+}
+
+/* Body copy */
+.font-body {
+  font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+}
+
+/* ────────────────────────────────────
+   Custom Scrollbar
+──────────────────────────────────── */
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;
 }
-
 ::-webkit-scrollbar-track {
-  background: rgba(11, 18, 33, 0.6);
+  background: #071018;
 }
-
 ::-webkit-scrollbar-thumb {
   background: rgba(56, 189, 248, 0.2);
-  border-radius: 3px;
+  border-radius: 4px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(56, 189, 248, 0.4);
 }
 
-/* Leaflet Customizations for Dark Maritime Navigation */
+/* ────────────────────────────────────
+   Leaflet Map Theming
+──────────────────────────────────── */
 .leaflet-container {
   background-color: #060a12 !important;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Space Mono', 'JetBrains Mono', monospace;
   width: 100%;
   height: 100%;
 }
 
 .leaflet-control-zoom {
-  border: 1px solid rgba(56, 189, 248, 0.2) !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6) !important;
-  border-radius: 4px !important;
+  border: 1px solid rgba(56, 189, 248, 0.18) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6) !important;
+  border-radius: 3px !important;
   overflow: hidden;
 }
-
 .leaflet-control-zoom a {
-  background-color: #0b1324 !important;
+  background-color: #091520 !important;
   color: #38bdf8 !important;
-  border-bottom: 1px solid rgba(56, 189, 248, 0.15) !important;
+  border-bottom: 1px solid rgba(56, 189, 248, 0.12) !important;
+  font-size: 14px !important;
+  line-height: 26px !important;
 }
-
 .leaflet-control-zoom a:hover {
-  background-color: #13223f !important;
-  color: #00e5ff !important;
+  background-color: #0e1f30 !important;
+  color: #7dd3fc !important;
 }
-
 .leaflet-control-attribution {
-  background: rgba(7, 11, 20, 0.85) !important;
-  color: #64748b !important;
-  font-size: 10px !important;
-  border-top-left-radius: 4px;
+  background: rgba(5, 13, 23, 0.85) !important;
+  color: #475569 !important;
+  font-size: 9px !important;
+  border-top-left-radius: 3px;
   backdrop-filter: blur(4px);
 }
-
 .leaflet-control-attribution a {
   color: #38bdf8 !important;
 }
 
-/* Leaflet Dark Popup */
+/* Dark popup */
 .leaflet-popup-content-wrapper {
-  background: #0b1325 !important;
-  color: #f1f5f9 !important;
-  border: 1px solid rgba(56, 189, 248, 0.3) !important;
-  border-radius: 6px !important;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 229, 255, 0.15) !important;
+  background: #0b1828 !important;
+  color: #e2e8f0 !important;
+  border: 1px solid rgba(56, 189, 248, 0.25) !important;
+  border-radius: 4px !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 229, 255, 0.08) !important;
   padding: 0 !important;
 }
-
 .leaflet-popup-content {
   margin: 0 !important;
   line-height: 1.4 !important;
 }
-
 .leaflet-popup-tip {
-  background: #0b1325 !important;
-  border: 1px solid rgba(56, 189, 248, 0.3) !important;
+  background: #0b1828 !important;
 }
 
-/* Polar radar & pulsing animations */
+/* ────────────────────────────────────
+   Animations
+──────────────────────────────────── */
 @keyframes radar-pulse {
-  0% {
-    transform: scale(0.95);
-    opacity: 0.8;
-  }
-  50% {
-    transform: scale(1.3);
-    opacity: 0.2;
-  }
-  100% {
-    transform: scale(1.6);
-    opacity: 0;
-  }
+  0%   { transform: scale(0.9);  opacity: 0.7; }
+  50%  { transform: scale(1.4);  opacity: 0.15; }
+  100% { transform: scale(1.8);  opacity: 0; }
 }
-
 .pulse-ring {
-  animation: radar-pulse 2.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+  animation: radar-pulse 2.8s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
 }
 
 @keyframes dash {
-  to {
-    stroke-dashoffset: -40;
-  }
+  to { stroke-dashoffset: -40; }
 }
-
 .route-dash-active {
   animation: dash 2.5s linear infinite;
+}
+
+/* ────────────────────────────────────
+   Selection highlight
+──────────────────────────────────── */
+::selection {
+  background: rgba(56, 189, 248, 0.25);
 }
